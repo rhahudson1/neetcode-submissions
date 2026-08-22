@@ -1,0 +1,22 @@
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        subset = []
+        def dfs(i, subset, total):
+            if total == target:
+                res.append(subset.copy())
+                return
+            # if the len is equal to cnadidates we are out
+            # if the ttoal is greater than the target, you backtrack
+            if i == len(nums) or total > target:
+                return
+            subset.append(nums[i])
+            dfs(i+1, subset,total + nums[i])
+            subset.pop()
+            dfs(i+1, subset, total)
+        dfs(0,[],0)
+        return res
+
+
+
+        
