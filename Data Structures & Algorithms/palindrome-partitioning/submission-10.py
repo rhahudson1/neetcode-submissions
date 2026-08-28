@@ -1,0 +1,27 @@
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        subset = []
+        res = []
+        def isPali(l,r):
+            while l < r:
+                if s[l] != s[r]:
+                    return False
+                l += 1 
+                r -= 1
+            return True
+        def dfs(i):
+            if i == len(s):
+                res.append(subset.copy())
+                return
+            for j in range(i,len(s)):
+                if isPali(i,j):
+                    subset.append(s[i:j+1])
+                    dfs(j+1)
+                    subset.pop()
+        dfs(0)
+        return res
+
+
+
+
+        
