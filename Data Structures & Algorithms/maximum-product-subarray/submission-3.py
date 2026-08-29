@@ -1,0 +1,13 @@
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        cache = [-1] * len(nums)
+        for k in range(len(nums)):
+            cache[k] = nums[k]
+        for i in range(len(nums)-1,-1,-1):
+            product = 1
+            for j in range(i, len(nums)):
+                product *= nums[j]
+                cache[i] = max(cache[i], product)
+        return max(cache)
+
+        
